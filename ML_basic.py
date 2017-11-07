@@ -18,6 +18,22 @@ churn_result = df['class']
 X = churn_feat_space.as_matrix().astype(np.float)
 y = np.array(churn_result)
 
+#df = pd.read_csv('breast-cancer-wisconsin.dta.txt')
+
+#Replace 0, drop nan columns and fill
+df.replace('?', -99999, inplace=True)
+df.fillna(0,inplace=True)
+df.dropna(inplace= True)
+df.drop(['id'],1, inplace=True)
+
+#Onehotencoding and coverting into array to float
+df_with_dummies = pd.get_dummies( df, columns = ['clump_thickness'] )
+X = np.array(df_with_dummies.drop(['class'],1)).astype(float)
+y = np.array(df_with_dummies['class'])
+
+print (df_with_dummies.columns)
+print(df_with_dummies.head())
+
 #Copy from here
 
 import pandas as pd
