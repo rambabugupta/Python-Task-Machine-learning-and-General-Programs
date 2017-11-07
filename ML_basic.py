@@ -57,3 +57,11 @@ clf.fit(X_train, y_train)
 score = clf.score(X_test, y_test)
 print("Accuracy: ", score)
 
+Y_RESULT = clf.predict(X)
+
+
+#fmt='%d' = integer result else remove it
+#numpy.savetxt("FILENAME.csv", Y_RESULT, fmt='%d', delimiter=",")
+
+churn_feat_space['predict_result'] = Y_RESULT
+churn_feat_space.to_csv('predict.csv')
